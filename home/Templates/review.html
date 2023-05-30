@@ -1,0 +1,439 @@
+<!-- /*
+* Template Name: Property
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+  {% include 'header.html' %}  
+  <style> 
+    .rating {
+      display: inline-flex;
+      font-size: 30px;
+      color: #cccccc;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+    }
+    .rating input[type="radio"] {
+      display: none;
+    }
+    .rating label {
+      cursor: pointer;
+      padding: 0 0.5em;
+    }
+    .rating label:hover,
+    .rating label:hover ~ label,
+    .rating input[type="radio"]:checked ~ label {
+      color: #ffbf00;
+    }
+    
+    
+  </style>
+</head>
+  <body>
+    
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Review</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                Review
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-2 mb-5 mb-lg-0"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+           
+          </div>
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-12 mb-3">
+                <h2>   Đóng Góp Ý Kiến </h2>
+                </div>
+          
+                <div class="col-6 mb-3">
+                  <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Description"
+                  name="mota" id="mota"
+                />
+                </div>
+              
+             
+                <div class="rating col-6 mb-3">
+                  <input type="radio" id="star5" name="rating" value="5">
+                  <label for="star5">&#9734;</label>
+                  <input type="radio" id="star4" name="rating" value="4">
+                  <label for="star4">&#9734;</label>
+                  <input type="radio" id="star3" name="rating" value="3">
+                  <label for="star3">&#9734;</label>
+                  <input type="radio" id="star2" name="rating" value="2">
+                  <label for="star2">&#9734;</label>
+                  <input type="radio" id="star1" name="rating" value="1">
+                  <label for="star1">&#9734;</label>
+                </div>
+          
+               
+  
+        
+                <div class="col-12">
+                  <input
+                    type="submit"
+                    value="Send Message"
+                    class="btn btn-primary"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.untree_co-section -->
+
+    <div class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Contact</h3>
+              <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+              <ul class="list-unstyled links">
+                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                <li>
+                  <a href="mailto:info@mydomain.com">info@mydomain.com</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Sources</h3>
+              <ul class="list-unstyled float-start links">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Vision</a></li>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy</a></li>
+              </ul>
+              <ul class="list-unstyled float-start links">
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Creative</a></li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Links</h3>
+              <ul class="list-unstyled links">
+                <li><a href="#">Our Vision</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+
+              <ul class="list-unstyled social">
+                <li>
+                  <a href="#"><span class="icon-instagram"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-twitter"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-facebook"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-linkedin"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-pinterest"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-dribbble"></span></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <!-- 
+              **==========
+              NOTE: 
+              Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+              **==========
+            -->
+
+            <p>
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              . All Rights Reserved. &mdash; Designed with love by
+              <a href="https://untree.co">Untree.co</a>
+              <!-- License information: https://untree.co/license/ -->
+            </p>
+            <div>
+              Distributed by
+              <a href="https://themewagon.com/" target="_blank">themewagon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.site-footer -->
+
+    <!-- Preloader -->
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <script> 
+      var headers = new Headers();
+        headers.append("X-CSCAPI-KEY", "Rk1GMVh5S2hSRDZqTVczVE04QjU1Rzhyc0ppYkxHSnVMRXducjNoRA==");
+
+        var requestOptions = {
+          method: 'GET',
+          headers: headers,
+          redirect: 'follow'
+        };
+
+        fetch("https://api.countrystatecity.in/v1/countries/", requestOptions)
+        .then(response => response.json())
+        .then(function(result) {
+          var htmls =  result.map(function(results){
+  
+          return `<option value="${results.iso2}-${results.name}" >${results.name}</option>`   
+      
+          });
+          var html = htmls.join('');
+          document.getElementById('input_select_country').innerHTML = html;
+        })
+        .catch(error => console.log('error', error));
+
+
+        
+
+
+    </script>
+
+   
+
+    <script>
+     function getOptionCountry() {
+      var Country = document.getElementById('input_select_country').value;
+      const Country_Array = Country.split("-", 1);
+    
+
+
+      var headers = new Headers();
+        headers.append("X-CSCAPI-KEY", "Rk1GMVh5S2hSRDZqTVczVE04QjU1Rzhyc0ppYkxHSnVMRXducjNoRA==");
+
+        var requestOptions = {
+          method: 'GET',
+          headers: headers,
+          redirect: 'follow'
+        };
+
+        fetch(`https://api.countrystatecity.in/v1/countries/${Country_Array.toString()}/states`, requestOptions)
+        .then(response => response.json())
+        .then(function(result) {
+          var htmls =  result.map(function(results){
+            {% comment %} console.log(results.name) {% endcomment %}
+          return `<option value="${results.iso2}-${results.name}"">${results.name}</option>`   
+          });
+          var html = htmls.join('');
+          document.getElementById('input_select_city').innerHTML = html;
+          
+        })
+        .catch(error => console.log('error', error));
+        
+     }
+
+     </script>
+
+
+     <script>
+      function getOptionCity() {
+       var Country = document.getElementById('input_select_country').value;
+       var City = document.getElementById('input_select_city').value;
+       const Country_Array = Country.split("-", 1);
+       const City_Array = City.split("-", 1);
+
+       var headers = new Headers();
+         headers.append("X-CSCAPI-KEY", "Rk1GMVh5S2hSRDZqTVczVE04QjU1Rzhyc0ppYkxHSnVMRXducjNoRA==");
+
+         var requestOptions = {
+           method: 'GET',
+           headers: headers,
+           redirect: 'follow'
+         };
+
+         fetch(`https://api.countrystatecity.in/v1/countries/${Country_Array.toString()}/states/${City_Array.toString()}/cities`, requestOptions)
+         .then(response => response.json())
+         .then(function(result) {
+           var htmls =  result.map(function(results){
+             {% comment %} console.log(results.name) {% endcomment %}
+           return `<option value="${results.iso2}-${results.name}">${results.name}</option>`   
+           });
+           var html = htmls.join('');
+           document.getElementById('input_select_district').innerHTML = html;
+           
+         })
+         .catch(error => console.log('error', error));
+         
+      }
+ 
+      </script>
+      <script>
+        (function () {
+          var imageUpload = function () {
+              var self = this;
+              this.selector = {
+                  fileInput: document.getElementById('imageUploadInput'),
+                  fileInputBtn: document.getElementById('imageUploadInputBtn'),
+                  imagePreview: document.getElementById('imagePreview'),
+                  status: document.getElementById('uploadFileStatus'),
+                  sendBtn: document.getElementById('sendData'),
+                  infoName: document.getElementById('fileInfomation_name'),
+                  infoType: document.getElementById('fileInfomation_type'),
+                  infoSize: document.getElementById('fileInfomation_size')
+              };
+              this.imageData = "";
+              this.fileTypes = ['image/png', 'image/jpeg'];
+              this.maxSize = 30 * 1024 * 1024; // 30MB
+              this.uploadUrl = 'https://tutrithuc.com/TestAPI/imageUpload';
+              this.onChangeInput = function (e) {
+                  // Reset file data / image preview
+                  self.selector.status.innerHTML = '';
+                  self.selector.imagePreview.setAttribute('src', "img/default.jpg");
+                  self.imageData='';
+                  
+                  // Get the current file upload
+                  var file = e.target.files[0];
+                  this.selector.infoName.innerHTML = file.name;
+                  this.selector.infoType.innerHTML = file.type;
+                  this.selector.infoSize.innerHTML = file.size + " bytes"; // in bytes
+      
+                  // Validate file type
+                  if (this.fileTypes.indexOf(file.type) == -1) {
+                      self.selector.status.innerHTML = "File không hợp lệ (chỉ file hình jpg và hình png được chấp nhận)";
+                      return;
+                  }
+                  
+                  // Validate file size
+                  if (file.size > this.maxSize) {
+                      self.selector.status.innerHTML = "Dung lượng file vượt quá giới hạn (tối đa 30MB được chấp nhận)";
+                      return;
+                  }
+      
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                      self.imageData = e.target.result;
+                      
+                      // Validate file content
+                      self.selector.imagePreview.onerror = function(){
+                          self.imageData = "";
+                          self.selector.imagePreview.setAttribute('src', "img/default.jpg");
+                          self.selector.status.innerHTML = 'Nội dung hình không hợp lệ';
+                      };
+                      self.selector.imagePreview.setAttribute('src', self.imageData);
+                  };
+                  reader.readAsDataURL(file);
+              };
+              this.sendData = function () {
+                  // Validate when file content is empty
+                  if (this.imageData == ""){
+                      self.selector.status.innerHTML = 'Vui lòng chọn hình để tải lên';
+                      return;
+                  }
+                  
+                  // Prevent double click
+                  var data = {
+                      'imageData': this.imageData
+                  };
+                  this.imageData = "";
+                  
+                  var request = new XMLHttpRequest();
+                  request.open("POST", this.uploadUrl);
+                  request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+                  request.onreadystatechange = function () {
+                      if (this.readyState === 4 && this.status === 200) {
+                          self.selector.status.innerHTML = "Upload thành công";
+                      } else {
+                          console.log(this.responseText);
+                          self.selector.status.innerHTML = "Đã có lỗi xảy ra, không upload được hình";
+                      }
+                  };
+      
+                  // Send request to server
+                  request.send(JSON.stringify(data));
+              };
+      
+              /*
+               * Event trigger
+               */
+              this.selector.fileInput.addEventListener('change', function (e) {
+                  self.onChangeInput(e);
+              });
+              this.selector.fileInputBtn.addEventListener('click', function () {
+                  self.selector.fileInput.click();
+              });
+              this.selector.sendBtn.addEventListener('click', function () {
+                  self.sendData();
+              });
+          };
+          window.addEventListener("DOMContentLoaded", function () {
+              console.log('DOM is loaded');
+              new imageUpload();
+          });
+      })();
+      </script>
+    {% include 'footer.html' %}  
+
+  </body>
+</html>

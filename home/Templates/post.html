@@ -1,0 +1,601 @@
+<!-- /*
+* Template Name: Property
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  {% include 'header.html' %}  
+  <body>
+    
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Post</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  Post
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-2 mb-5 mb-lg-0"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+           
+          </div>
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-12 mb-3">
+                <h2>   Tạo Nhà Cho Thuê </h2>
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Họ Tên"
+                    name="name" id="name"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    name="email" id="email"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Số phòng ngủ"
+                    name="bedroom" id="bedroom"
+                  />
+                </div>
+          
+                <div class="col-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Số phòng tắm"
+                    name="bathroom" id="bathroom"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Số Lầu"
+                    name="solau" id="solau"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Chiều Dài(m)"
+                    name="cd" id="cd"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Chiều Rộng(m)"
+                    name="cr" id="cr"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Giá(VNĐ)"
+                    name="price" id="price"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Diện Tích"
+                    name="dt" id="dt"
+                  />
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="district">Nhà Mặt Tiền </label>
+                  <select class="form-control" name="mattien" id="mattien">
+                      <option value="yes">Có</option>
+                      <option value="no">Không</option>
+                  </select>
+              </div>
+                <div class="col-12 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Tiêu Đề"
+                    name="tieude" id="tieude"
+                  />
+                </div>
+          
+                </div>
+                <div class="col-12 mb-3">
+                  <textarea class="form-control" placeholder="Mô Tả Chi Tiết" name="mota" id="mota"></textarea>
+              </div>
+            
+              
+               
+                <div class="col-12 mb-3">
+                <label for="city">Thành Phố</label>
+                <select class="form-control" id="city" name="city"></select>
+              </div>
+                <br>
+                <div class="col-12 mb-3">
+                <label for="district">Quận/Huyện</label>
+                <select class="form-control" id="district" name="district"></select> 
+              </div>
+
+              <div class="col-12 mb-3">
+                <label for="district">Phường/Xã</label>
+                <select class="form-control" id="ward" name="address  "></select> 
+              </div>
+              
+              <div class="col-12 mb-3">
+                <input
+                type="text"
+                class="form-control"
+                placeholder="Địa Chỉ Chi Tiết"
+                name="addressdetail" id="addressdetail"
+              />
+              </div> 
+                <div class="col-12 mb-3">
+                <fieldset >
+                  <legend> <i class="bi bi-images"></i> Ảnh</legend>
+                  <div class="mb-3">
+                    <div class="container imageUploadContainer mb-3">
+                      <div>
+                          <img class="mb-2" style="width:100%"
+                              src="{% static 'image/noiamge.webp' %}" 
+                              alt="Ảnh xem trước" 
+                              id="imagePreview">
+                      </div>
+                      <div class="imageUpload mb-3">
+                        {{ mypost.images }}
+                          <input name = "images" type="file" id="imageUploadInput" accept=".jpg,.png">
+                    
+                   
+                      </div>
+                      <div id="uploadFileStatus"></div>
+                      <div class="fileInfomation">
+                          <p>
+                              Tên file: 
+                              <span id="fileInfomation_name">----</span>
+                          </p>
+                          <p>
+                              Định dạng: 
+                              <span id="fileInfomation_type">----</span>
+                          </p>
+                          <p>
+                              Dung lượng: 
+                              <span id="fileInfomation_size">----</span>
+                          </p>
+                      </div>
+                  </div>
+                  </div>
+                  {% comment %} <div class="mb-3">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="FieldsetCheck" >
+                      <label class="form-check-label" for="FieldsetCheck">
+                        Can't check this
+                      </label>
+                    </div>
+                  </div> {% endcomment %}
+               
+  
+               
+                </fieldset>
+                </div>
+                <div class="col-12 mb-3">
+                  <input name="list_images" type="file" id="imageUploadInput" accept=".jpg, .png" multiple>
+              </div>              
+                <div class="col-12">
+                  <input
+                    type="submit"
+                    value="Send Message"
+                    class="btn btn-primary"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.untree_co-section -->
+
+    <div class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Contact</h3>
+              <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+              <ul class="list-unstyled links">
+                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                <li>
+                  <a href="mailto:info@mydomain.com">info@mydomain.com</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Sources</h3>
+              <ul class="list-unstyled float-start links">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Vision</a></li>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy</a></li>
+              </ul>
+              <ul class="list-unstyled float-start links">
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Creative</a></li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Links</h3>
+              <ul class="list-unstyled links">
+                <li><a href="#">Our Vision</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+
+              <ul class="list-unstyled social">
+                <li>
+                  <a href="#"><span class="icon-instagram"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-twitter"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-facebook"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-linkedin"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-pinterest"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-dribbble"></span></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <!-- 
+              **==========
+              NOTE: 
+              Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+              **==========
+            -->
+
+            <p>
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              . All Rights Reserved. &mdash; Designed with love by
+              <a href="https://untree.co">Untree.co</a>
+              <!-- License information: https://untree.co/license/ -->
+            </p>
+            <div>
+              Distributed by
+              <a href="https://themewagon.com/" target="_blank">themewagon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.site-footer -->
+
+    <!-- Preloader -->
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    {% comment %} <script>
+      // When the page loads
+      window.onload = function() {
+        // Get the city select element
+        const citySelect = document.getElementById("city");
+    
+        // Make an AJAX request to the API
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://provinces.open-api.vn/api/p/", true);
+        xhr.onload = function() {
+          // If the request was successful
+          if (xhr.status === 200) {
+            // Parse the JSON response
+            const response = JSON.parse(xhr.responseText);
+            // Loop through the results
+            response.forEach(function(city) {
+              // Create a new option element for the city
+              const option = document.createElement("option");
+              // Set the value and text of the option
+              option.value = city.code;
+              option.text = city.name;
+              // Append the option to the city select element
+              citySelect.appendChild(option);
+            });
+          }
+        };
+        xhr.send();
+      };
+    </script> {% endcomment %}
+   
+    <script>
+      // Get the city and district select elements
+      const citySelect = document.getElementById("city");
+      const districtSelect = document.getElementById("district");
+      const WardSelect = document.getElementById("ward");
+      
+      // Make an AJAX request to the API to get the cities
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://vapi.vnappmob.com/api/province/", true);
+      xhr.onload = function() {
+        // If the request was successful
+        if (xhr.status === 200) {
+          // Parse the JSON response
+          const response = JSON.parse(xhr.responseText);
+          // Loop through the cities
+          response.results.forEach(function(city) {
+            // Create a new option element for the city
+            const option = document.createElement("option");
+            // Set the value and text of the option
+            option.value = city.province_id + '-' + city.province_name;
+            option.text = city.province_name;
+            // Append the option to the city select element
+            citySelect.appendChild(option);
+          });
+        }
+        
+      };
+      xhr.send();
+
+      // Add an event listener to the city select element
+      citySelect.addEventListener("change", function() {
+        // Get the selected city id
+        
+       // Get the selected option's value
+          const selectedValue = citySelect.value;
+        // Split the selected value to extract the city ID
+          const values = selectedValue.split('-');
+          const cityId = values[0];
+
+        // If no city is selected, clear the district select element
+        if (cityId === "") {
+          districtSelect.innerHTML = "<option value=\"\">-- Select a district --</option>";
+          return;
+        }
+        // Make an AJAX request to the API to get the districts for the selected city
+        const xhr2 = new XMLHttpRequest();
+        xhr2.open("GET", `https://vapi.vnappmob.com/api/province/district/${cityId}`, true);
+        xhr2.onload = function() {
+          // If the request was successful
+          if (xhr2.status === 200) {
+            // Parse the JSON response
+            const response = JSON.parse(xhr2.responseText);
+            // Clear the district select element
+            districtSelect.innerHTML = "<option value=\"\">-- Select a district --</option>";
+            // Loop through the districts
+            response.results.forEach(function(district) {
+              // Create a new option element for the district
+              const option = document.createElement("option");
+              // Set the value and text of the option
+              option.value = district.district_id + '-' + district.district_name;
+              option.text = district.district_name;
+              // Append the option to the district select element
+              districtSelect.appendChild(option);
+            });
+          }
+        };
+        xhr2.send();
+      });
+
+
+      districtSelect.addEventListener("change", function() {
+
+            // Get the selected option's value
+            const selectedValue = districtSelect.value;
+            // Split the selected value to extract the city ID
+              const values = selectedValue.split('-');
+              const districtid = values[0];
+      
+        // If no city is selected, clear the district select element
+        console.log(districtid)
+        if (districtid === "") {
+          WardSelect.innerHTML = "<option value=\"\">-- Select a ward --</option>";
+          return;
+        }
+        // Make an AJAX request to the API to get the districts for the selected city
+        const xhr3 = new XMLHttpRequest();
+        xhr3.open("GET", `https://vapi.vnappmob.com/api/province/ward/${districtid}`, true);
+        xhr3.onload = function() {
+          // If the request was successful
+          if (xhr3.status === 200) {
+            // Parse the JSON response
+            const response = JSON.parse(xhr3.responseText);
+            // Clear the district select element
+            WardSelect.innerHTML = "<option value=\"\">-- Select a ward --</option>";
+            // Loop through the districts
+            response.results.forEach(function(ward) {
+              // Create a new option element for the district
+              const option = document.createElement("option");
+              // Set the value and text of the option
+              option.value = ward.ward_id + '-' + ward.ward_name;
+              option.text = ward.ward_name;
+              // Append the option to the district select element
+              WardSelect.appendChild(option);
+            });
+     
+          }
+        };
+        xhr3.send();
+      });
+      </script>
+    
+        
+      <script>
+        (function () {
+          var imageUpload = function () {
+              var self = this;
+              this.selector = {
+                  fileInput: document.getElementById('imageUploadInput'),
+                  fileInputBtn: document.getElementById('imageUploadInputBtn'),
+                  imagePreview: document.getElementById('imagePreview'),
+                  status: document.getElementById('uploadFileStatus'),
+                  sendBtn: document.getElementById('sendData'),
+                  infoName: document.getElementById('fileInfomation_name'),
+                  infoType: document.getElementById('fileInfomation_type'),
+                  infoSize: document.getElementById('fileInfomation_size')
+              };
+              this.imageData = "";
+              this.fileTypes = ['image/png', 'image/jpeg'];
+              this.maxSize = 30 * 1024 * 1024; // 30MB
+              this.uploadUrl = 'https://tutrithuc.com/TestAPI/imageUpload';
+              this.onChangeInput = function (e) {
+                  // Reset file data / image preview
+                  self.selector.status.innerHTML = '';
+                  self.selector.imagePreview.setAttribute('src', "img/default.jpg");
+                  self.imageData='';
+                  
+                  // Get the current file upload
+                  var file = e.target.files[0];
+                  this.selector.infoName.innerHTML = file.name;
+                  this.selector.infoType.innerHTML = file.type;
+                  this.selector.infoSize.innerHTML = file.size + " bytes"; // in bytes
+      
+                  // Validate file type
+                  if (this.fileTypes.indexOf(file.type) == -1) {
+                      self.selector.status.innerHTML = "File không hợp lệ (chỉ file hình jpg và hình png được chấp nhận)";
+                      return;
+                  }
+                  
+                  // Validate file size
+                  if (file.size > this.maxSize) {
+                      self.selector.status.innerHTML = "Dung lượng file vượt quá giới hạn (tối đa 30MB được chấp nhận)";
+                      return;
+                  }
+      
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                      self.imageData = e.target.result;
+                      
+                      // Validate file content
+                      self.selector.imagePreview.onerror = function(){
+                          self.imageData = "";
+                          self.selector.imagePreview.setAttribute('src', "img/default.jpg");
+                          self.selector.status.innerHTML = 'Nội dung hình không hợp lệ';
+                      };
+                      self.selector.imagePreview.setAttribute('src', self.imageData);
+                  };
+                  reader.readAsDataURL(file);
+              };
+              this.sendData = function () {
+                  // Validate when file content is empty
+                  if (this.imageData == ""){
+                      self.selector.status.innerHTML = 'Vui lòng chọn hình để tải lên';
+                      return;
+                  }
+                  
+                  // Prevent double click
+                  var data = {
+                      'imageData': this.imageData
+                  };
+                  this.imageData = "";
+                  
+                  var request = new XMLHttpRequest();
+                  request.open("POST", this.uploadUrl);
+                  request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+                  request.onreadystatechange = function () {
+                      if (this.readyState === 4 && this.status === 200) {
+                          self.selector.status.innerHTML = "Upload thành công";
+                      } else {
+                          console.log(this.responseText);
+                          self.selector.status.innerHTML = "Đã có lỗi xảy ra, không upload được hình";
+                      }
+                  };
+      
+                  // Send request to server
+                  request.send(JSON.stringify(data));
+              };
+      
+              /*
+               * Event trigger
+               */
+              this.selector.fileInput.addEventListener('change', function (e) {
+                  self.onChangeInput(e);
+              });
+              this.selector.fileInputBtn.addEventListener('click', function () {
+                  self.selector.fileInput.click();
+              });
+              this.selector.sendBtn.addEventListener('click', function () {
+                  self.sendData();
+              });
+          };
+          window.addEventListener("DOMContentLoaded", function () {
+              console.log('DOM is loaded');
+              new imageUpload();
+          });
+      })();
+      </script>
+    {% include 'footer.html' %}  
+
+  </body>
+</html>
