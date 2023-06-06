@@ -144,5 +144,6 @@ MEDIA_URL = '/media/'
 PAYPAL_RECEIVER_EMAIL = 'sb-tlfks26105179@personal.example.com'
 PAYPAL_TEST = True
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'home/static')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
