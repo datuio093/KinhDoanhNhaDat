@@ -38,7 +38,12 @@ urlpatterns = [
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('payment-success/', home.payment_success, name='payment-success'),
     path('payment-failed/', home.payment_failed, name='payment-failed'),
-    path('activate/<uidb64>/<token>' , home.get_activate, name="activate")
+    path('activate/<uidb64>/<token>' , home.get_activate, name="activate"),
+    path('mypost/', home.my_post , name='mypost'),
+    path('mypost/delete/<int:item_id>/', home.delete_item, name='delete_item'),
+
+
+ 
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

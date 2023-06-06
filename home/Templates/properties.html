@@ -3,10 +3,54 @@
 <html lang="en">
   {% load static %}
   {% include 'header.html' %}    
-  <body>
+  <style>
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
     
-
- 
+    .page-link {
+      display: inline-block;
+      padding: 8px 12px;
+      text-decoration: none;
+      background-color: #f1f1f1;
+      color: #333;
+      border: none;
+      border-radius: 4px;
+      margin-right: 5px;
+      transition: background-color 0.3s ease;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+    
+    .page-link:hover {
+      background-color: #eaeaea;
+      color: #555;
+    }
+    
+    .page-link.current-page {
+      background-color: #333;
+      color: #fff;
+    }
+    
+    .page-link.first-link,
+    .page-link.last-link {
+      font-weight: bold;
+    }
+    
+    .page-link.previous-link,
+    .page-link.next-link {
+      font-style: italic;
+    }
+    .controls .prev,
+    .controls .next {
+      display: none;
+    }
+  </style>
+  <body> 
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
@@ -35,60 +79,83 @@
     <div class="section">
       <div class="container">
         <div class="row mb-5 align-items-center">
+          
           <div class="col-lg-6 text-center mx-auto">
             <h2 class="font-weight-bold text-primary heading">
               Featured Properties
+              
             </h2>
           </div>
+          
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="property-slider-wrap">
-              <div class="property-slider">
+    
+        <div class="row mb-10 align-items-center container" style="margin-bottom:100px">
+          <!-- Filter Form -->
+          <form class="row">
+            <!-- Add your filter fields here -->
+            <div class=" col-6 mb-3">
+              <label for="bedroom" class="form-label">Loại nhà</label>
+              <select id="bedroom" name="bedroom" class="form-select">
+                <option value="2">Nhà mặt tiền</option>
+                <option value="3">Nhà trong hẻm</option>
+              </select>
+            </div>
+            <div class="col-6 mb-3">
+              <label for="bathroom" class="form-label">Giá</label>
+              <select id="bathroom" name="bathroom" class="form-select">
+                <option value="2">Tăng dần</option>
+                <option value="3">Giảm dần</option>
+              </select>
+            </div>
+            <div class="col-6 mb-3">
+              <label for="city">Thành Phố</label>
+              <select class="form-control" id="city" name="city"></select>
+            </div>
+              <br>
+              <div class="col-6 mb-3">
+              <label for="district">Quận/Huyện</label>
+              <select class="form-control" id="district" name="district"></select> 
+            </div>
+
+            <div class="col-12 mb-3">
+              <label for="district">Phường/Xã</label>
+              <select class="form-control" id="ward" name="address  "></select> 
+            </div>
+            <button type="submit" class="col-3 btn btn-primary">Apply Filter</button>
+          </form>
+        </div>
+   
+    
+    
+            <div class="property-slider" style="">
+       
                 {% load humanize %}
-                {% for x in post %}
-              
-                <div class="property-item">
-                  <a href="{% url "post_properties" x.id %}" class="img">
-                    <img src={{x.images.url}} alt="Image" class="img-fluid" style="height:300px;width:400px" />
-                  </a>
-
-                  <div class="property-content">
-                    <div class="price mb-2"><span>${{x.price|intcomma }}</span></div>
-                    <div>
-                      <span class="d-block mb-2 text-black-50"
-                        >{{x.image}} </span
-                      >
-                      <span class="city d-block mb-3">{{x.district}},{{x.city}},{{x.address}}</span>
-
-                      <div class="specs d-flex mb-4">
-                        <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                          <span class="caption">{{x.bedroom}} beds</span>
-                        </span>
-                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                          <span class="caption">{{x.bathroom}} baths</span>
-                        </span>
+                {% for x in posts %}
+                  <div class="property-item">
+                    <a href="{% url 'post_properties' x.id %}" class="img">
+                      <img src="{{ x.images.url }}" alt="Image" class="img-fluid" style="height: 300px; width: 400px;" />
+                    </a>
+                    <div class="property-content">
+                      <div class="price mb-2"><span>${{ x.price|intcomma }}</span></div>
+                      <div>
+                        <span class="d-block mb-2 text-black-50">{{ x.image }}</span>
+                        <span class="city d-block mb-3">{{ x.district }}, {{ x.city }}, {{ x.address }}</span>
+                        <div class="specs d-flex mb-4">
+                          <span class="d-block d-flex align-items-center me-3">
+                            <span class="icon-bed me-2"></span>
+                            <span class="caption">{{ x.bedroom }} beds</span>
+                          </span>
+                          <span class="d-block d-flex align-items-center">
+                            <span class="icon-bath me-2"></span>
+                            <span class="caption">{{ x.bathroom }} baths</span>
+                          </span>
+                        </div>
+                        <a href="{% url 'post_properties' x.id %}" class="btn btn-primary py-2 px-3">See details</a>
                       </div>
-
-                      <a
-                        href="{% url "post_properties" x.id %}"
-                        class="btn btn-primary py-2 px-3"
-                        >See details</a
-                      >
                     </div>
                   </div>
-                </div>
                 {% endfor %}
-
-                
-                <!-- .item -->
-       
-           
-              </div>
-
-              <div
+                <div
                 id="property-nav"
                 class="controls"
                 tabindex="0"
@@ -110,67 +177,31 @@
                 >
               </div>
             </div>
+                  <!-- Pagination links -->
+                  <div class="pagination">
+                    {% if posts.has_previous %}
+                      <a href="?page=1" class="page-link">&laquo; First</a>
+                      <a href="?page={{ posts.previous_page_number }}" class="page-link">Previous</a>
+                    {% endif %}
+                
+                    {% for num in posts.paginator.page_range %}
+                      {% if num == posts.number %}
+                        <span class="page-link current-page">{{ num }}</span>
+                      {% else %}
+                        <a href="?page={{ num }}" class="page-link">{{ num }}</a>
+                      {% endif %}
+                    {% endfor %}
+                
+                    {% if posts.has_next %}
+                      <a href="?page={{ posts.next_page_number }}" class="page-link">Next</a>
+                      <a href="?page={{ posts.paginator.num_pages }}" class="page-link">Last &raquo;</a>
+                    {% endif %}
+                  </div>
           </div>
         </div>
       </div>
     </div>
 
-    {% comment %} <div class="section section-properties">
-      <div class="container">
-        <div class="row">
-          {% for x in post %}
-          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            <div class="property-item mb-30">
-              <a href="property-single.html" class="img">
-                <img src={{x.images.url}} alt="Image" class="img-fluid" />
-              </a>
-
-              <div class="property-content">
-                <div class="price mb-2"><span>$1,291,000</span></div>
-                <div>
-                  <span class="d-block mb-2 text-black-50"
-                    >5232 California Fake, Ave. 21BC</span
-                  >
-                  <span class="city d-block mb-3">California, USA</span>
-
-                  <div class="specs d-flex mb-4">
-                    <span class="d-block d-flex align-items-center me-3">
-                      <span class="icon-bed me-2"></span>
-                      <span class="caption">2 beds</span>
-                    </span>
-                    <span class="d-block d-flex align-items-center">
-                      <span class="icon-bath me-2"></span>
-                      <span class="caption">2 baths</span>
-                    </span>
-                  </div>
-
-                  <a
-                    href="property-single.html"
-                    class="btn btn-primary py-2 px-3"
-                    >See details</a
-                  >
-                </div>
-              </div>
-            </div>
-            <!-- .item -->
-          </div>
-          {% endfor %}
-         
-        </div>
-     <div class="row align-items-center py-5">
-          <div class="col-lg-3">Pagination (1 of 10)</div>
-          <div class="col-lg-6 text-center">
-            <div class="custom-pagination">
-              <a href="#">1</a>
-              <a href="#" class="active">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-            </div>
-          </div>
-        </div>
-      </div> 
-    </div> {% endcomment %}
 
     <div class="site-footer">
       <div class="container">
@@ -285,7 +316,116 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
+    <script>
+      // Get the city and district select elements
+      const citySelect = document.getElementById("city");
+      const districtSelect = document.getElementById("district");
+      const WardSelect = document.getElementById("ward");
+      
+      // Make an AJAX request to the API to get the cities
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://vapi.vnappmob.com/api/province/", true);
+      xhr.onload = function() {
+        // If the request was successful
+        if (xhr.status === 200) {
+          // Parse the JSON response
+          const response = JSON.parse(xhr.responseText);
+          // Loop through the cities
+          response.results.forEach(function(city) {
+            // Create a new option element for the city
+            const option = document.createElement("option");
+            // Set the value and text of the option
+            option.value = city.province_id + '-' + city.province_name;
+            option.text = city.province_name;
+            // Append the option to the city select element
+            citySelect.appendChild(option);
+          });
+        }
+        
+      };
+      xhr.send();
 
+      // Add an event listener to the city select element
+      citySelect.addEventListener("change", function() {
+        // Get the selected city id
+        
+       // Get the selected option's value
+          const selectedValue = citySelect.value;
+        // Split the selected value to extract the city ID
+          const values = selectedValue.split('-');
+          const cityId = values[0];
+
+        // If no city is selected, clear the district select element
+        if (cityId === "") {
+          districtSelect.innerHTML = "<option value=\"\">-- Select a district --</option>";
+          return;
+        }
+        // Make an AJAX request to the API to get the districts for the selected city
+        const xhr2 = new XMLHttpRequest();
+        xhr2.open("GET", `https://vapi.vnappmob.com/api/province/district/${cityId}`, true);
+        xhr2.onload = function() {
+          // If the request was successful
+          if (xhr2.status === 200) {
+            // Parse the JSON response
+            const response = JSON.parse(xhr2.responseText);
+            // Clear the district select element
+            districtSelect.innerHTML = "<option value=\"\">-- Select a district --</option>";
+            // Loop through the districts
+            response.results.forEach(function(district) {
+              // Create a new option element for the district
+              const option = document.createElement("option");
+              // Set the value and text of the option
+              option.value = district.district_id + '-' + district.district_name;
+              option.text = district.district_name;
+              // Append the option to the district select element
+              districtSelect.appendChild(option);
+            });
+          }
+        };
+        xhr2.send();
+      });
+
+
+      districtSelect.addEventListener("change", function() {
+
+            // Get the selected option's value
+            const selectedValue = districtSelect.value;
+            // Split the selected value to extract the city ID
+              const values = selectedValue.split('-');
+              const districtid = values[0];
+      
+        // If no city is selected, clear the district select element
+        console.log(districtid)
+        if (districtid === "") {
+          WardSelect.innerHTML = "<option value=\"\">-- Select a ward --</option>";
+          return;
+        }
+        // Make an AJAX request to the API to get the districts for the selected city
+        const xhr3 = new XMLHttpRequest();
+        xhr3.open("GET", `https://vapi.vnappmob.com/api/province/ward/${districtid}`, true);
+        xhr3.onload = function() {
+          // If the request was successful
+          if (xhr3.status === 200) {
+            // Parse the JSON response
+            const response = JSON.parse(xhr3.responseText);
+            // Clear the district select element
+            WardSelect.innerHTML = "<option value=\"\">-- Select a ward --</option>";
+            // Loop through the districts
+            response.results.forEach(function(ward) {
+              // Create a new option element for the district
+              const option = document.createElement("option");
+              // Set the value and text of the option
+              option.value = ward.ward_id + '-' + ward.ward_name;
+              option.text = ward.ward_name;
+              // Append the option to the district select element
+              WardSelect.appendChild(option);
+            });
+     
+          }
+        };
+        xhr3.send();
+      });
+      </script>
     {% include 'footer.html' %}    
   </body>
 </html>

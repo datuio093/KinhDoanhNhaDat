@@ -8,6 +8,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#"AuthGroup: Represents a user authentication group
+#AuthGroupPermissions: Represents the permissions assigned to an authentication group.
+#AuthPermission: Represents an individual permission.
+#AuthUser: Represents a user with authentication-related fields.
+#AuthUserGroups: Represents the relationship between a user and an authentication group.
+#AuthUserUserPermissions: Represents the relationship between a user and individual permissions.
+#DjangoAdminLog: Represents the admin log for actions performed in the Django admin interface.
+#DjangoContentType: Represents a content type used by Django's content framework.
+#DjangoMigrations: Represents the recorded database migrations.
+#DjangoSession: Represents a session in Django.
+#HomeMypost: Represents a post created by a user, including various property details.
+#ListImage: Represents images associated with a post.
+#UserProfile: Represents additional user profile information, including social media links and profile picture.
+#Comment: Represents a comment posted by a user on a post.
+#Review: Represents a user review for a property.
+#Favorite: Represents the favorite relationship between a user and a post"
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -127,8 +144,8 @@ class HomeMypost(models.Model):
     dientich = models.TextField(blank=True, null=True)
     chieudai = models.TextField(blank=True, null=True)
     chieurong = models.TextField(blank=True, null=True)
-    mattien = models.TextField(blank=True, null=True)  #có giáp mặt đường không
-
+    mattien = models.TextField(blank=True, null=True)  #mat tien hay trong hem
+    duongtruocnha = models.TextField(blank=True, null=True)  #chieu rong duong truoc nha
 
     addressdetail = models.TextField(blank=True, null=True)
     address = models.TextField()
@@ -144,6 +161,9 @@ class HomeMypost(models.Model):
     solau = models.TextField(blank=True, null=True)  #số tầng
 
     price = models.TextField(blank=True, null=True)
+    guess_price = models.TextField(blank=True, null=True)
+    dochinhxac =  models.TextField(blank=True, null=True)
+
     listimages = models.ManyToManyField('ListImage', blank=True)
 
     class Meta:

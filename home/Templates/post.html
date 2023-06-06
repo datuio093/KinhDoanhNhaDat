@@ -1,9 +1,4 @@
-<!-- /*
-* Template Name: Property
-* Template Author: Untree.co
-* Template URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
+
 <!DOCTYPE html>
 <html lang="en">
   {% load static %}
@@ -50,7 +45,7 @@
               {% csrf_token %}
               <div class="row">
                 <div class="col-12 mb-3">
-                <h2>   Tạo Nhà Cho Thuê </h2>
+                <h2>   Tạo Nhà Cho Thuê {{ context   }} </h2>
                 </div>
                 <div class="col-6 mb-3">
                   <input
@@ -93,6 +88,23 @@
                     name="solau" id="solau"
                   />
                 </div>
+
+                <div class="col-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Đường trước nhà"
+                    name="crd" id="crd"
+                  />
+                </div>
+
+                <div class="col-12 mb-3">
+                  <label for="district">Loại Nhà </label>
+                  <select class="form-control" name="mattien" id="mattien">
+                      <option value="Nhà mặt tiền">Nhà mặt tiền</option>
+                      <option value="Nhà trong hẻm">Nhà trong hẻm</option>
+                  </select>
+              </div>
                 <div class="col-6 mb-3">
                   <input
                     type="number"
@@ -125,13 +137,7 @@
                     name="dt" id="dt"
                   />
                 </div>
-                <div class="col-12 mb-3">
-                  <label for="district">Nhà Mặt Tiền </label>
-                  <select class="form-control" name="mattien" id="mattien">
-                      <option value="yes">Có</option>
-                      <option value="no">Không</option>
-                  </select>
-              </div>
+           
                 <div class="col-12 mb-3">
                   <input
                     type="text"
@@ -218,6 +224,9 @@
                
                 </fieldset>
                 </div>
+
+                <div class="col-12 mb-3" id="result"></div>
+
                 <div class="col-12 mb-3">
                   <input name="list_images" type="file" id="imageUploadInput" accept=".jpg, .png" multiple>
               </div>              
@@ -595,6 +604,8 @@
           });
       })();
       </script>
+
+
     {% include 'footer.html' %}  
 
   </body>

@@ -89,8 +89,22 @@
             <p class="text-black-50">
               {{event.descrip}}
             </p>
+            <strong>
+              <h5 class="text-black-50">
+                {% load humanize %} 
+                <i class="fas fa-tag"></i> Giá: {{ event.price | intcomma }} VNĐ
+              </h5>
+              <h5 class="text-black-50">
+                {% load humanize %}
+                <i class="fas fa-chart-line"></i> Dự đoán: {{ event.guess_price | floatformat:0 | intcomma }} VNĐ
+              </h5>
+              <h5 class="text-black-50">
+                {% load humanize %}
+                <i class="fas fa-check-circle"></i> Độ Chính Xác: {{ event.dochinhxac | floatformat:3 }}%
+              </h5>
+        </strong>
             <p class="text-black-50">
-              <i class="fas fa-home"></i> Mặt Tiền: {% if event.mattien == "yes" %}Có{% elif event.mattien == "no" %}Không{% endif %}
+              <i class="fas fa-home"></i> Mặt Tiền: {{ event.mattien }}
           </p>
             <p class="text-black-50">
               <i class="fas fa-building"></i> Số Lầu: {{ event.solau }}
@@ -125,7 +139,7 @@
     
 
             <div class="d-block agent-box p-5">
-              {% if user_profile.profile_pic %}
+              {% if user_profile.profile_pic.url %}
               <div class="img mb-4">
                 <img 
                   src="{{user_profile.profile_pic.url}}"
@@ -135,7 +149,7 @@
                 />
               </div>
               {% else %}
-              <p>No profile picture found.</p>
+              <p>No profile picture found . {{user_profile.profile_pic.url}}</p>
                {% endif %}
               <div class="text">
                 <h3 class="mb-0">{{user_post.first_name}} {{user_post.last_name}}</h3>
