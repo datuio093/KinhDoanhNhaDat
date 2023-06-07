@@ -49,6 +49,8 @@ from sklearn.preprocessing import OneHotEncoder
 import pickle
 import streamlit as st
 
+import tkinter
+
 import os
 
 def get_home(request):
@@ -631,8 +633,8 @@ def profile(request):
 @login_required(login_url='login')  # Specify the URL of the login page
 def my_post(request):
 
-    all_posts = HomeMypost.objects.order_by('id')
-    paginator = Paginator(all_posts, 2)  # Adjust the number of posts per page as needed
+    all_posts_s = HomeMypost.objects.order_by('id')
+    paginator = Paginator(all_posts_s, 2)  # Adjust the number of posts per page as needed
     page_number = request.GET.get('page')
     mypost = paginator.get_page(page_number)
 
