@@ -5,7 +5,7 @@ from gzip import FNAME
 # from lib2to3.pgen2.tokenize import generate_tokens
 from multiprocessing import context
 import re
-from tkinter.messagebox import NO
+
 from turtle import title
 from unittest.result import failfast
 from chothuenha import settings
@@ -813,7 +813,7 @@ def becomeahost(request):
         'item_name': 'Item Name',
         # 'notify_url': 'http://localhost:8000' + reverse('paypal-ipn'),
         'return_url': request.build_absolute_uri(reverse('payment-success')),
-        'cancel_return': request.build_absolute_uri(reverse('payment-failed')),
+        'cancel_return': request.build_absolute_uri(reverse('payment-failed')), 
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     print(form)
