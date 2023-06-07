@@ -1,1 +1,1 @@
-web: gunicorn 'kinhdoanhnhadat.wsgi'
+web: gunicorn 'chothuenha.wsgi'
