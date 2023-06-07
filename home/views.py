@@ -49,7 +49,6 @@ from sklearn.preprocessing import OneHotEncoder
 import pickle
 import streamlit as st
 
-import tkinter
 
 import os
 
