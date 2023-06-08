@@ -6,7 +6,7 @@ from gzip import FNAME
 from multiprocessing import context
 import re
 
-from turtle import title
+# from turtle import title
 from unittest.result import failfast
 from chothuenha import settings
 from django.shortcuts import render, redirect , reverse
@@ -37,7 +37,6 @@ from django.core.paginator import Paginator
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
-import re
 import keras
 import seaborn as sns
 import matplotlib
