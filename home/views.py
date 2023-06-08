@@ -6,7 +6,7 @@ from gzip import FNAME
 from multiprocessing import context
 import re
 
-# from turtle import title
+
 from unittest.result import failfast
 from chothuenha import settings
 from django.shortcuts import render, redirect , reverse
