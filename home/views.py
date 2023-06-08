@@ -95,8 +95,8 @@ def get_home(request):
                 post = post.filter(address=address)
         except ValueError:
             pass
-        return render(request, 'index.html', {'post': post, 'review': review})
-    return render(request, 'index.html', {'post':post , 'review':review})
+        return render(request, 'Templates/index.html', {'post': post, 'review': review})
+    return render(request, 'Templates/index.html', {'post':post , 'review':review})
 
 
 
@@ -154,7 +154,7 @@ def get_login(request):
             
           
             
-    return render(request , 'login.html')
+    return render(request , 'Templates/login.html')
 
 def get_register(request):
     """
