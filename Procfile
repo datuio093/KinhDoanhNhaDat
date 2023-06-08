@@ -1,1 +1,1 @@
-web: gunicorn 'chothuenha.wsgi'
+web: gunicorn chothuenha.wsgi --log-file -

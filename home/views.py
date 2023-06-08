@@ -343,11 +343,11 @@ def get_all_properties(request):
         ward = request.POST.get('ward')
 
         posts = HomeMypost.objects.all()
-
-        if price == 2:
-            posts = posts.order_by('id')
-        elif price == 3:
-            posts = posts.order_by('-id')
+     
+        if price == "2":
+            posts = posts.order_by('price')
+        elif price == "3":
+            posts = posts.order_by('-price')
         if city:
             _, city = city.split('-')
             posts = posts.filter(city=city)
