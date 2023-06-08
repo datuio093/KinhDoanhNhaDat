@@ -5,8 +5,6 @@ from gzip import FNAME
 # from lib2to3.pgen2.tokenize import generate_tokens
 from multiprocessing import context
 import re
-
-
 from unittest.result import failfast
 from chothuenha import settings
 from django.shortcuts import render, redirect , reverse
@@ -23,7 +21,6 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from . tokens import generate_tokens
 from .models import *
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
 import json
