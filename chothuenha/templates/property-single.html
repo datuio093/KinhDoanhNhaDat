@@ -1,0 +1,400 @@
+<!-- /*
+* Template Name: Property
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+  <!-- Include Magnific Popup CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>
+      Property &mdash; Free Bootstrap 5 Website Template by Untree.co
+    </title>
+
+    <style>
+      .favorite-button {
+        background-color: #ffffff;
+        border: none;
+        color: #d2d2d2;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      
+      .favorite-button:hover {
+        color: #ff4c4c;
+      }
+    </style>
+  </head>
+  {% include 'header.html' %}   
+  <body>
+   
+ 
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">
+              {{event.district}},{{event.city}}
+            </h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">
+                  <a href="properties.html">Properties</a>
+                </li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  5232 California AVE. 21BC
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-7">
+            <div class="img-property-slide-wrap">
+              <div class="img-property-slide">
+                {% for image in listimage %}
+                <a href="{{ image.listimage.url }}" class="zoom-gallery">
+                  <img src="{{ image.listimage.url }}" alt="Image" style="height:570px;width:500px" class="img-fluid" />
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <h2 class="heading text-primary">{{event.addressdetail}}</h2>
+            <p class="meta"> {{event.district}},{{event.city}},{{event.address}} </p>
+            <strong class="text-black-50">
+              {{event.title}}
+              
+            </strong>
+            <p class="text-black-50">
+              {{event.descrip}}
+            </p>
+            <strong>
+              <h5 class="text-black-50">
+                {% load humanize %} 
+                <i class="fas fa-tag"></i> Giá: {{ event.price | intcomma }} VNĐ
+              </h5>
+              <h5 class="text-black-50">
+                {% load humanize %}
+                <i class="fas fa-chart-line"></i> Dự đoán: {{ event.guess_price | floatformat:0 | intcomma }} VNĐ
+              </h5>
+              <h5 class="text-black-50">
+                {% load humanize %}
+                <i class="fas fa-check-circle"></i> Độ Chính Xác: {{ event.dochinhxac | floatformat:3 }}%
+              </h5>
+        </strong>
+            <p class="text-black-50">
+              <i class="fas fa-home"></i> Mặt Tiền: {{ event.mattien }}
+          </p>
+            <p class="text-black-50">
+              <i class="fas fa-building"></i> Số Lầu: {{ event.solau }}
+          </p>
+          <p class="text-black-50">
+              <i class="fas fa-ruler-horizontal"></i> Chiều Dài: {{ event.chieudai }}
+          </p>
+          <p class="text-black-50">
+              <i class="fas fa-ruler-vertical"></i> Chiều Rộng: {{ event.chieurong }}
+          </p>
+          <p class="text-black-50">
+              <i class="fas fa-chart-area"></i> Diện Tích: {{ event.dientich }}
+          </p>
+          
+            {% if is_favorite %}
+            <button  class="favorite-button" onclick="location.href='{% url 'remove_favorite' %}'">
+                <i class="fas fa-heart"></i>
+                Remove from Favorites
+            </button>
+        {% else %}
+        <button class="favorite-button" onclick="location.href='{% url 'add_favorite' %}'">
+          <i class="fas fa-heart"></i>
+          Add to Favorites
+        </button>
+        {% endif %}
+        
+            {% comment %} <button class="favorite-button" onclick="location.href='{% url 'add_favorite' %}'">
+              <i class="fas fa-heart"></i>
+              Add to Favorites
+          </button> {% endcomment %}
+          
+    
+
+            <div class="d-block agent-box p-5">
+              {% if user_profile.profile_pic.url %}
+              <div class="img mb-4">
+                <img 
+                  src="{{user_profile.profile_pic.url}}"
+                  alt="Image"
+                  class="img-fluid"
+                  style="width: 100px; height: 100px;"
+                />
+              </div>
+              {% else %}
+              <p>No profile picture found . {{user_profile.profile_pic.url}}</p>
+               {% endif %}
+              <div class="text">
+                <h3 class="mb-0">{{user_post.first_name}} {{user_post.last_name}}</h3>
+                <div class="meta mb-3"></div>
+                <p>
+                  {{profile_pic}}
+                </p>
+                <ul class="list-unstyled social dark-hover d-flex">
+          
+                  <li class="me-1">
+                    <a href="#"><span class="icon-facebook"></span></a>
+                  </li>
+                  <li class="me-1">
+                    <a href="{% url "send_email" user_post.id %}"><span class="icon-envelope"></span></a>
+                  </li>
+                  <li class="me-1">
+                    <a href="#" id="like-btn" class="like-btn"><span class="icon-thumbs-up"></span></a>
+                  </li>
+                  <li class="me-1">
+                    <a href="#" id="dislike-btn" class="dislike-btn"><span class="icon-thumbs-down"></span></a>
+                  </li>
+          
+ 
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+  
+          <div class="container my-5 py-5">
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="card">
+                  <div class="card-body">
+                    {% for comment in comments %}
+                    <div class="d-flex flex-start align-items-center">
+                      <img class="rounded-circle shadow-1-strong me-3"
+                        src="{{comment.user.userprofile.profile_pic.url}}" alt="avatar" width="60"
+                        height="60" />
+                      <div>
+                        <h6 class="fw-bold text-primary mb-1">    {{comment.user.username}}</h6>
+                        <p class="text-muted small mb-0">
+                          {{ comment.posted_at|date:"F d, Y H:i" }}
+                        </p>
+                      </div>
+                    </div>
+                    
+        
+                    <p class="mt-3 mb-4 pb-2">
+                        {{comment.comment}}
+            
+                    </p>
+        
+                    {% comment %} <div class="small d-flex justify-content-start">
+                      <a href="#!" class="d-flex align-items-center me-3">
+                        <i class="far fa-thumbs-up me-2"></i>
+                        <p class="mb-0">Like</p>
+                      </a>
+                      <a href="#!" class="d-flex align-items-center me-3">
+                        <i class="far fa-comment-dots me-2"></i>
+                        <p class="mb-0">Comment</p>
+                      </a>
+                      <a href="#!" class="d-flex align-items-center me-3">
+                        <i class="fas fa-share me-2"></i>
+                        <p class="mb-0">Share</p>
+                      </a>
+                    </div> {% endcomment %}
+                    {% endfor %}
+                  </div>
+                  <form action="" method="POST" >
+                  <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                    <div class="d-flex flex-start w-100">
+                    
+                        {% csrf_token %}
+                        {% if my_user_profile.profile_pic.url %}
+                      <img class="rounded-circle shadow-1-strong me-3"
+                        src="{{my_user_profile.profile_pic.url}}" alt="avatar" width="40"
+                        height="40" />
+                        {% else %}
+                      <p>No profile picture found.</p>
+                       {% endif %}
+                      <div class="form-outline w-100">
+                        <textarea class="form-control" id="textAreaExample" rows="4"
+                          style="background: #fff;" name="cmt"></textarea>
+                        <label class="form-label" for="textAreaExample">Message</label>
+                      </div>
+                    </div>
+                    <div class="float-end mt-2 pt-1">
+                      <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+                      <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+    
+    <div class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Contact</h3>
+              <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+              <ul class="list-unstyled links">
+                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                <li>
+                  <a href="mailto:info@mydomain.com">info@mydomain.com</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Sources</h3>
+              <ul class="list-unstyled float-start links">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Vision</a></li>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy</a></li>
+              </ul>
+              <ul class="list-unstyled float-start links">
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Creative</a></li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Links</h3>
+              <ul class="list-unstyled links">
+                <li><a href="#">Our Vision</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+
+              <ul class="list-unstyled social">
+                <li>
+                  <a href="#"><span class="icon-instagram"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-twitter"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-facebook"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-linkedin"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-pinterest"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-dribbble"></span></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <!-- 
+              **==========
+              NOTE: 
+              Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+              **==========
+            -->
+
+            <p>
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              . All Rights Reserved. &mdash; Designed with love by
+              <a href="https://untree.co">Untree.co</a>
+              <!-- License information: https://untree.co/license/ -->
+            </p>
+            <div>
+              Distributed by
+              <a href="https://themewagon.com/" target="_blank">themewagon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.site-footer -->
+
+    <!-- Preloader -->
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+   <!-- Include jQuery (required by Magnific Popup) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Include Magnific Popup JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script>
+  // Initialize Magnific Popup
+  $('.zoom-gallery').magnificPopup({
+    type: 'image',
+    gallery: {
+      enabled: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 300,
+      easing: 'ease-in-out'
+    }
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $(".like-btn").click(function() {
+      $(this).hide();
+      $(".dislike-btn").show();
+    });
+
+    $(".dislike-btn").click(function() {
+      $(".like-btn").show();
+      $(this).hide();
+    });
+  });
+</script>
+    {% include 'footer.html' %}   
+  </body>
+</html>

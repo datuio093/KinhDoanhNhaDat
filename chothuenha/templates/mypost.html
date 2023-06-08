@@ -45,10 +45,13 @@
     .page-link.next-link {
       font-style: italic;
     }
+
     .controls .prev,
-    .controls .next {
-      display: none;
-    }
+.controls .next {
+  display: none;
+}
+    
+    
   </style>
   <body> 
       <div class="container">
@@ -89,49 +92,14 @@
           
         </div>
     
-        <div class="row mb-10 align-items-center container" style="margin-bottom:100px">
-          <!-- Filter Form -->
-          <form class="row" method="post">
-            {% csrf_token %}
-            <!-- Add your filter fields here -->
-            <div class=" col-6 mb-3">
-              <label for="bedroom" class="form-label">Loại nhà</label>
-              <select id="bedroom" name="bedroom" class="form-select">
-                <option value="2">Nhà mặt tiền</option>
-                <option value="3">Nhà trong hẻm</option>
-              </select>
-            </div>
-            <div class="col-6 mb-3">
-              <label for="price" class="form-label">Giá</label>
-              <select id="price" name="price" class="form-select">
-                <option value="2">Tăng dần</option>
-                <option value="3">Giảm dần</option>
-              </select>
-            </div>
-            <div class="col-6 mb-3">
-              <label for="city">Thành Phố</label>
-              <select class="form-control" id="city" name="city"></select>
-            </div>
-              <br>
-              <div class="col-6 mb-3">
-              <label for="district">Quận/Huyện</label>
-              <select class="form-control" id="district" name="district"></select> 
-            </div>
-
-            <div class="col-12 mb-3">
-              <label for="district">Phường/Xã</label>
-              <select class="form-control" id="ward" name="address  "></select> 
-            </div>
-            <button type="submit" class="col-3 btn btn-primary">Apply Filter</button>
-          </form>
-        </div>
+       
    
     
     
-            <div class="property-slider" style="">
+            <div class="property-slider">
        
                 {% load humanize %}
-                {% for x in posts %}
+                {% for x in mypost %}
                   <div class="property-item">
                     <a href="{% url 'post_properties' x.id %}" class="img">
                       <img src="{{ x.images.url }}" alt="Image" class="img-fluid" style="height: 300px; width: 400px;" />
@@ -152,10 +120,12 @@
                           </span>
                         </div>
                         <a href="{% url 'post_properties' x.id %}" class="btn btn-primary py-2 px-3">See details</a>
+                        <a href="{% url 'delete_item' x.id %}" class="btn btn-primary py-2 px-3">Delete</a>
                       </div>
                     </div>
                   </div>
                 {% endfor %}
+
                 <div
                 id="property-nav"
                 class="controls"
@@ -180,22 +150,22 @@
             </div>
                   <!-- Pagination links -->
                   <div class="pagination">
-                    {% if posts.has_previous %}
+                    {% if mypost.has_previous %}
                       <a href="?page=1" class="page-link">&laquo; First</a>
                       <a href="?page={{ posts.previous_page_number }}" class="page-link">Previous</a>
                     {% endif %}
                 
-                    {% for num in posts.paginator.page_range %}
-                      {% if num == posts.number %}
+                    {% for num in mypost.paginator.page_range %}
+                      {% if num == mypost.number %}
                         <span class="page-link current-page">{{ num }}</span>
                       {% else %}
                         <a href="?page={{ num }}" class="page-link">{{ num }}</a>
                       {% endif %}
                     {% endfor %}
                 
-                    {% if posts.has_next %}
-                      <a href="?page={{ posts.next_page_number }}" class="page-link">Next</a>
-                      <a href="?page={{ posts.paginator.num_pages }}" class="page-link">Last &raquo;</a>
+                    {% if mypost.has_next %}
+                      <a href="?page={{ mypost.next_page_number }}" class="page-link">Next</a>
+                      <a href="?page={{ mypost.paginator.num_pages }}" class="page-link">Last &raquo;</a>
                     {% endif %}
                   </div>
           </div>
@@ -427,6 +397,11 @@
         xhr3.send();
       });
       </script>
-    {% include 'footer.html' %}    
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'js/tiny-slider.js' %}"></script>
+      <script src="{% static 'js/aos.js' %}"></script>
+      <script src="{% static 'js/navbar.js' %}"></script>
+      <script src="{% static 'js/counter.js' %}"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
   </body>
 </html>

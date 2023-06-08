@@ -335,6 +335,38 @@ def get_all_properties(request):
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)
 
+    if request.method == 'POST':
+   
+        price = request.POST.get('price')
+        city = request.POST.get('city')
+        district = request.POST.get('district')
+        ward = request.POST.get('ward')
+
+        posts = HomeMypost.objects.all()
+
+        if price == 2:
+            posts = posts.order_by('id')
+        elif price == 3:
+            posts = posts.order_by('-id')
+        if city:
+            _, city = city.split('-')
+            posts = posts.filter(city=city)
+
+        if district:
+            _, district = district.split('-')
+            posts = posts.filter(district=district)
+
+        if ward:
+            _, district = district.split('-')
+            posts = posts.filter(ward=ward)
+
+        paginator = Paginator(posts, 3)  # Adjust the number of posts per page as needed
+
+        page_number = request.GET.get('page')
+        posts = paginator.get_page(page_number)
+        
+        return render(request, 'properties.html', {'posts': posts})
+
     return render(request, 'properties.html', {'posts': posts})
 
 

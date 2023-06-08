@@ -156,12 +156,12 @@ class HomeMypost(models.Model):
     email = models.TextField()
     images = models.ImageField(max_length=100, blank=True, null=True, upload_to='images/')
 
-    bathroom = models.TextField(blank=True, null=True)
-    bedroom = models.TextField(blank=True, null=True)
-    solau = models.TextField(blank=True, null=True)  #số tầng
+    bathroom = models.IntegerField(blank=True, null=True)
+    bedroom = models.IntegerField(blank=True, null=True)
+    solau = models.IntegerField(blank=True, null=True)  #số tầng
 
-    price = models.TextField(blank=True, null=True)
-    guess_price = models.TextField(blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    guess_price = models.IntegerField(blank=True, null=True)
     dochinhxac =  models.TextField(blank=True, null=True)
 
     listimages = models.ManyToManyField('ListImage', blank=True)
