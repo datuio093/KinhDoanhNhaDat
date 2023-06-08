@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Webcome to Django Login
+
+Hello {{name}}
+
+Please comfirm your email by checking in the link 
+Confirmation Link: http://{{ domain }}{%url 'activate' uidb64=uid token=token %}
+
+{% endautoescape off %}
